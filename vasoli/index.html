@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Túnel VasoliWeb</title>
+<style>body{font-family:system-ui,sans-serif;margin:3rem auto;max-width:26rem;padding:0 1rem;color:#222}label{display:block;margin:1rem 0 .5rem}input{font:inherit;padding:.5rem;width:100%;box-sizing:border-box}button{font:inherit;padding:.5rem 1rem;margin-top:.75rem}#mensaje{color:#b00020;min-height:1.5em}small{color:#666}</style>
+</head><body>
+<h1>Túnel VasoliWeb</h1>
+<form id="formulario"><label for="palabra">Palabra clave</label><input id="palabra" type="password" autocomplete="current-password" autofocus><button type="submit">Entrar</button></form>
+<p id="mensaje" role="alert"></p>
+<p><small>Guarda esta página: es la que no cambia. Dirección actualizada el 2026-09-29T20:28:42.604Z (UTC).</small></p>
+<script>
+(function(){
+var C={"sal":"z+y71P5eBJyEdlrUPwMMZw==","iv":"x8eFzvNpO3WkYUWA","datos":"xQnXz7WY/BS9MrlSdkeo+0rJMgtTP8NKP6/p0uc9I4BKfhS4o3ArVhoiPUvNUY5jnLuek7ohR/miX0Ey+FxLJYPQaII="};
+var fresco=Promise.race([fetch(location.pathname,{cache:"no-store"}).then(function(r){return r.ok?r.text():"";}).then(function(t){var x=/var C=(\{[^}]*\});/.exec(t);if(x){var n=JSON.parse(x[1]);if(n.sal&&n.iv&&n.datos)C=n;}}).catch(function(){}),new Promise(function(r){setTimeout(r,2500);})]);
+var m=document.getElementById("mensaje");
+function b(s){var t=atob(s),a=new Uint8Array(t.length);for(var i=0;i<t.length;i++)a[i]=t.charCodeAt(i);return a;}
+async function abrir(p){await fresco;var c=C;var e=new TextEncoder();var base=await crypto.subtle.importKey("raw",e.encode(p),"PBKDF2",false,["deriveKey"]);var k=await crypto.subtle.deriveKey({name:"PBKDF2",salt:b(c.sal),iterations:100000,hash:"SHA-256"},base,{name:'AES-GCM',length:256},false,["decrypt"]);var plano=await crypto.subtle.decrypt({name:'AES-GCM',iv:b(c.iv)},k,b(c.datos));return new TextDecoder().decode(plano);}
+async function intentar(p,recordar){try{var url=await abrir(p);if(recordar){try{localStorage.setItem("enlaces.palabra",p);}catch(e){}}location.replace(url);return true;}catch(e){return false;}}
+var guardada=null;try{guardada=localStorage.getItem("enlaces.palabra");}catch(e){}
+if(guardada){m.textContent="Entrando…";intentar(guardada,false).then(function(ok){if(!ok)m.textContent="La palabra guardada ya no sirve: escríbela de nuevo.";});}
+document.getElementById("formulario").addEventListener("submit",async function(ev){ev.preventDefault();m.textContent="Comprobando…";var ok=await intentar(document.getElementById("palabra").value,true);if(!ok)m.textContent="Palabra incorrecta.";});
+})();
+</script>
+</body></html>
