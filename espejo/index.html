@@ -8,10 +8,10 @@
 <h1>Túnel ESPEJO v2</h1>
 <form id="formulario"><label for="palabra">Palabra clave</label><input id="palabra" type="password" autocomplete="current-password" autofocus><button type="submit">Entrar</button></form>
 <p id="mensaje" role="alert"></p>
-<p><small>Guarda esta página: es la que no cambia. Dirección actualizada el 2026-10-18T13:04:10.901Z (UTC).</small></p>
+<p><small>Guarda esta página: es la que no cambia. Dirección actualizada el 2026-10-18T15:45:36.331Z (UTC).</small></p>
 <script>
 (function(){
-var C={"sal":"79eqyJRSZr+Hb/5zZrtfgQ==","iv":"NyDf5rgZhpzYZgV1","datos":"wRp3ocksH9eQaL2GmIKnPRM/AL3TOp1u4YqjzhZesOWwFXsqCpRASWW5Z22WTUzOAJiVBASK9N53AJy37WvDlZE11+YC7EE="};
+var C={"sal":"p+IbcIu7DW55P2H8c4x6pQ==","iv":"iqgKRWkhdwvkcBqG","datos":"bwhWNUj3BtKTIuzNqFrIG+oMaXc4zYYlJkdRkYnjTI5Jevmcfweo7yGrOcrt2DATSiYeCTESI6XvzaqGwJPKYSB5Up6BCmPWgk0="};
 var fresco=Promise.race([fetch(location.pathname,{cache:"no-store"}).then(function(r){return r.ok?r.text():"";}).then(function(t){var x=/var C=(\{[^}]*\});/.exec(t);if(x){var n=JSON.parse(x[1]);if(n.sal&&n.iv&&n.datos)C=n;}}).catch(function(){}),new Promise(function(r){setTimeout(r,2500);})]);
 var m=document.getElementById("mensaje");
 function b(s){var t=atob(s),a=new Uint8Array(t.length);for(var i=0;i<t.length;i++)a[i]=t.charCodeAt(i);return a;}
