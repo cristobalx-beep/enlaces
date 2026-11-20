@@ -8,14 +8,14 @@
 <h1>Túnel VasoliWeb</h1>
 <form id="formulario"><label for="palabra">Palabra clave</label><input id="palabra" type="password" autocomplete="current-password" autofocus><button type="submit">Entrar</button></form>
 <p id="mensaje" role="alert"></p>
-<p><small>Guarda esta página: es la que no cambia. Dirección actualizada el 2026-11-19T01:32:52.743Z (UTC).</small></p>
+<p><small>Guarda esta página: es la que no cambia. Dirección actualizada el 2026-11-20T10:54:44.943Z (UTC).</small></p>
 <script>
 (function(){
-var C={"sal":"uq5bwsyZZWCAPccNYY+tTA==","iv":"r98EVoK8SJOJpt3y","datos":"TcUNMPEqmXH3cTAe5q/3K1dcfipAjy8p7ExN6DFjsyQoFHkCLuhkXEUnbaD3gUtVk8gNedQo7jMqePQuKC4RmlW1bERX"};
+var C={"sal":"z/J9msHpKuCp1OQEb9dWDA==","iv":"8iVqz5W0j2VkZpct","datos":"mHJHPeew/KlCrXs06mGXuwfcYnn0lkcQdmS/1gaQAlkm9Wn/c5mWlheXQUXJl8t99A/WYX7ufojjAioPLYUyAg=="};
 var fresco=Promise.race([fetch(location.pathname,{cache:"no-store"}).then(function(r){return r.ok?r.text():"";}).then(function(t){var x=/var C=(\{[^}]*\});/.exec(t);if(x){var n=JSON.parse(x[1]);if(n.sal&&n.iv&&n.datos)C=n;}}).catch(function(){}),new Promise(function(r){setTimeout(r,2500);})]);
 var m=document.getElementById("mensaje");
 function b(s){var t=atob(s),a=new Uint8Array(t.length);for(var i=0;i<t.length;i++)a[i]=t.charCodeAt(i);return a;}
-async function abrir(p){await fresco;var c=C;var e=new TextEncoder();var base=await crypto.subtle.importKey("raw",e.encode(p),"PBKDF2",false,["deriveKey"]);var k=await crypto.subtle.deriveKey({name:"PBKDF2",salt:b(c.sal),iterations:100000,hash:"SHA-256"},base,{name:'AES-GCM',length:256},false,["decrypt"]);var plano=await crypto.subtle.decrypt({name:'AES-GCM',iv:b(c.iv)},k,b(c.datos));return new TextDecoder().decode(plano);}
+async function abrir(p){await fresco;var c=C;var e=new TextEncoder();var base=await crypto.subtle.importKey("raw",e.encode(p),"PBKDF2",false,["deriveKey"]);var k=await crypto.subtle.deriveKey({name:"PBKDF2",salt:b(c.sal),iterations:600000,hash:"SHA-256"},base,{name:'AES-GCM',length:256},false,["decrypt"]);var plano=await crypto.subtle.decrypt({name:'AES-GCM',iv:b(c.iv)},k,b(c.datos));return new TextDecoder().decode(plano);}
 async function intentar(p,recordar){try{var url=await abrir(p);if(recordar){try{localStorage.setItem("enlaces.palabra",p);}catch(e){}}location.replace(url);return true;}catch(e){return false;}}
 var guardada=null;try{guardada=localStorage.getItem("enlaces.palabra");}catch(e){}
 if(guardada){m.textContent="Entrando…";intentar(guardada,false).then(function(ok){if(!ok)m.textContent="La palabra guardada ya no sirve: escríbela de nuevo.";});}
